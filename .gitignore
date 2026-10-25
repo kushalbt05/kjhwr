@@ -1,0 +1,8 @@
+**/node_modules/
+**/dist/
+**/.venv/
+**/__pycache__/
+**/server.log
+**/server-error.log
+*.py[cod]
+.env
