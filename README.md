@@ -61,7 +61,24 @@ The January 2026 delivery range is the default and can be changed in the dashboa
 
 ## Deployment
 
-The app is not deployed yet. Run it locally using the instructions above.
+### Backend on Railway
+
+1. Create a Railway project from the GitHub repository.
+2. Set the service root directory to `/backend` and the Railway config file path to `/backend/railway.json`.
+3. Deploy the service, then generate a public domain in the service's Networking settings.
+
+Railway uses `railway.json` to start Uvicorn on Railway's `PORT` and check `/api/health`.
+
+### Frontend on Vercel
+
+1. Import `kushalbt05/kjhwr` from GitHub.
+2. Set the project root directory to `frontend`.
+3. Add the environment variable `VITE_API_URL` with the Railway public API URL, for example `https://your-service.up.railway.app`.
+4. Deploy. Vercel uses `frontend/vercel.json` to install dependencies, build the Vite app, and publish `dist`.
+
+After Vercel assigns a production domain, add that exact origin to the Railway service variable `FRONTEND_ORIGINS` (for example `https://kjhwr.vercel.app`) and redeploy the backend. For multiple allowed origins, separate them with commas. This CORS setting is required for browsers to call the API.
+
+The application is not deployed yet. Railway's Free plan currently starts with a 30-day trial and $5 credits, then provides $1/month; check Railway's current pricing before creating a service. Vercel lists its Hobby plan at $0/month. See [Railway pricing](https://railway.com/pricing) and [Vercel pricing](https://vercel.com/pricing).
 
 ## AI tools
 
